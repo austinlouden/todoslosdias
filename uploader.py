@@ -5,13 +5,13 @@ appId = 'NtKF1qDEmxpwm2OWLc2rFbxfDfetUAnfu4NRfZVF'
 apiKey = 'xoSxmJk7Ejaux6juwZxSDyBQcT8WjmJhag4fTzL8' 
 
 # change these
-cid = 1
-spanish = "lavadoro"
-english = "washing machine"
-speech = "feminine noun"
-ex_span = "La secadora todavía funciona, pero necesitamos comprar una lavadora nueva."
-ex_eng = "The dryer still works, but we have to buy a new washing machine." 
-imageName = "noun_118.png"
+cid = 3
+spanish = "pájaro"
+english = "bird"
+speech = "masculine noun"
+ex_span = "matar dos pájaros de un tiro"
+ex_eng = "to kill two birds with one stone" 
+imageName = "noun_17463.png"
 
 # upload the image
 connection = httplib.HTTPSConnection('api.parse.com', 443)
