@@ -98,7 +98,24 @@ function renderStatus(statusText) {
 
 document.addEventListener('DOMContentLoaded', function() {
   Parse.initialize("NtKF1qDEmxpwm2OWLc2rFbxfDfetUAnfu4NRfZVF", "OGjvXV3nKnf5Pp9g6QOijtYZF9LATNqIaiTQJQjQ");
-  
+  var Card = Parse.Object.extend("Card");
+  var query = new Parse.Query(Card);
+  query.equalTo("cid", 1);
+
+  query.find({
+    success: function(results) {
+      // Do something with the returned Parse.Object values
+      for (var i = 0; i < results.length; i++) {
+        var object = results[i];
+        //alert(object.id + ' - ' + object.get('playerName'));
+        document.getElementById('status').textContent = object.get('spanish');
+      }
+    },
+    error: function(error) {
+      alert("Error: " + error.code + " " + error.message);
+    }
+  });
+
   /*
   getCurrentTabUrl(function(url) {
      Put the image URL in Google search.

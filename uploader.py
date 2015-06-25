@@ -12,9 +12,10 @@ english = "washing machine"
 speech = "feminine noun"
 ex_span = "La secadora todavía funciona, pero necesitamos comprar una lavadora nueva."
 ex_eng = "The dryer still works, but we have to buy a new washing machine." 
+cid = 1
 
 # post
 url = "https://api.parse.com/1/classes/Card"
-data = {'spanish': spanish, 'english': english, 'speech': speech, 'ex_span': ex_span, 'ex_eng': ex_eng}
+data = {'spanish': spanish, 'english': english, 'speech': speech, 'ex_span': ex_span, 'ex_eng': ex_eng, 'cid': cid}
 r = requests.post(url, headers=headers, data=json.dumps(data))
 print r.json()
