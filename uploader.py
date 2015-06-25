@@ -1,21 +1,45 @@
 # -*- coding: utf-8 -*-
-import requests, json
+import requests, json, httplib
 
-# create the header
 appId = 'NtKF1qDEmxpwm2OWLc2rFbxfDfetUAnfu4NRfZVF' 
 apiKey = 'xoSxmJk7Ejaux6juwZxSDyBQcT8WjmJhag4fTzL8' 
-headers = {'Content-Type': 'application/json', 'X-Parse-Application-Id': appId, 'X-Parse-REST-API-Key': apiKey}
 
-# edit to create the object
-spanish = "lavadora"
+# change these
+cid = 1
+spanish = "lavadoro"
 english = "washing machine"
 speech = "feminine noun"
 ex_span = "La secadora todavía funciona, pero necesitamos comprar una lavadora nueva."
 ex_eng = "The dryer still works, but we have to buy a new washing machine." 
-cid = 1
+imageName = "noun_118.png"
 
-# post
-url = "https://api.parse.com/1/classes/Card"
-data = {'spanish': spanish, 'english': english, 'speech': speech, 'ex_span': ex_span, 'ex_eng': ex_eng, 'cid': cid}
-r = requests.post(url, headers=headers, data=json.dumps(data))
-print r.json()
+# upload the image
+connection = httplib.HTTPSConnection('api.parse.com', 443)
+connection.connect()
+connection.request('POST', '/1/files/' + imageName, open(imageName, 'rb').read(), {
+       "X-Parse-Application-Id": appId,
+       "X-Parse-REST-API-Key": apiKey,
+       "Content-Type": "image/png"
+     })
+result = json.loads(connection.getresponse().read())
+
+connection = httplib.HTTPSConnection('api.parse.com', 443)
+connection.connect()
+connection.request('POST', '/1/classes/Card', json.dumps({
+       "cid": cid,
+       "spanish": spanish,
+       "english": english, 
+       "speech": speech, 
+       "ex_span": ex_span,
+       "ex_eng": ex_eng,
+       "picture": {
+         "name": result['name'],
+         "__type": "File"
+       }
+     }), {
+       "X-Parse-Application-Id": appId,
+       "X-Parse-REST-API-Key": apiKey,
+       "Content-Type": "application/json"
+     })
+result = json.loads(connection.getresponse().read())
+print result

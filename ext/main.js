@@ -104,11 +104,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
   query.find({
     success: function(results) {
-      // Do something with the returned Parse.Object values
       for (var i = 0; i < results.length; i++) {
         var object = results[i];
-        //alert(object.id + ' - ' + object.get('playerName'));
+        var imageFile = object.get('picture');
+        var imageURL = imageFile.url();
+        console.log(imageURL);
         document.getElementById('status').textContent = object.get('spanish');
+        document.getElementById('image').src = imageURL;
       }
     },
     error: function(error) {
