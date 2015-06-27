@@ -4,14 +4,16 @@ import requests, json, httplib
 appId = 'NtKF1qDEmxpwm2OWLc2rFbxfDfetUAnfu4NRfZVF' 
 apiKey = 'xoSxmJk7Ejaux6juwZxSDyBQcT8WjmJhag4fTzL8' 
 
+# feminine
+# masculine
 # change these
-cid = 3
-spanish = "pájaro"
-english = "bird"
+cid = 15
+spanish = "cepillo de dientes"
+english = "toothbrush"
 speech = "masculine noun"
-ex_span = "matar dos pájaros de un tiro"
-ex_eng = "to kill two birds with one stone" 
-imageName = "noun_17463.png"
+ex_span = "siempre se me olvida empacar el cepillo de dientes"
+ex_eng = "I always forget to pack my toothbrush" 
+imageName = "noun_1827.png"
 
 # upload the image
 connection = httplib.HTTPSConnection('api.parse.com', 443)
